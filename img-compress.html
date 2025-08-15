@@ -3,7 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Mini Image Compressor</title>
+    <meta name="description" content="Free online image compressor - reduce JPG, PNG, WebP file sizes without quality loss. Fast, secure browser-based tool.">
+    <meta name="keywords" content="image compressor, reduce image size, optimize images, image optimizer, free image tool, compress images online, image compression, JPG compressor, PNG optimizer, WebP converter">
+    <meta name="author" content="Deb Malya Banerjee">
+    <meta property="og:title" content="Free Online Image Compression Tool">
+    <meta property="og:description" content="Compress your images online for free. Reduce file size without losing quality.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://yourwebsite.com">
+    <meta property="og:image" content="https://yourwebsite.com/preview.jpg">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://techmeetsliving.blogspot.com/" />
+    <title>Free Responsive Image Compressor Tool | Reduce JPG/PNG/WebP Size</title>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_ADSENSE_ID" crossorigin="anonymous"></script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "ImageCompressPro",
+        "url": "https://yourwebsite.com",
+        "description": "Free online tool to compress and optimize your images",
+        "applicationCategory": "ImageEditor",
+        "operatingSystem": "Any",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
     <style>
         *{box-sizing:border-box;margin:0;padding:0;font-family:-apple-system,sans-serif}
         body{background:#f8f9fa;color:#333;line-height:1.5;padding:10px}
@@ -36,8 +63,11 @@
         .stat-label{color:#666}
         .download-container{margin-top:10px;grid-column:1/-1}
         .download-btn{display:block;width:100%;text-align:center;background:#4bb543;color:#fff;text-decoration:none;padding:8px;border-radius:4px}
+        .ad-container{background:#fff;border-radius:6px;padding:10px;margin:15px 0;text-align:center}
+        .ad-label{font-size:.7rem;color:#999;text-transform:uppercase;margin-bottom:5px}
         .toast{position:fixed;bottom:10px;right:10px;background:#333;color:#fff;padding:8px 12px;border-radius:4px;transform:translateY(100px);opacity:0;transition:all .2s;font-size:.9rem}
         .toast.show{transform:translateY(0);opacity:1}
+        footer{text-align:center;padding:15px 0;font-size:.8rem;color:#666}
         @media (max-width:400px){.comparison{grid-template-columns:1fr}.btn-group{flex-direction:column}}
     </style>
 </head>
@@ -45,6 +75,18 @@
     <div class="container">
         <h1>Image Compressor</h1>
         
+        <!-- Top Ad -->
+        <div class="ad-container">
+            <div class="ad-label">Advertisement</div>
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-YOUR_ADSENSE_ID"
+                 data-ad-slot="YOUR_AD_SLOT_TOP"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({})</script>
+        </div>
+
         <div class="card">
             <div class="upload-area" id="upload-area">
                 <div>📁</div>
@@ -85,7 +127,7 @@
             <div class="results" id="results">
                 <div class="comparison">
                     <div class="image-card">
-                        <img id="original-img" src="" alt="Original">
+                        <img id="original-img" src="" alt="Original image preview">
                         <div class="image-stats">
                             <div class="stat-row">
                                 <span class="stat-label">Size:</span>
@@ -99,7 +141,7 @@
                     </div>
 
                     <div class="image-card">
-                        <img id="compressed-img" src="" alt="Compressed">
+                        <img id="compressed-img" src="" alt="Compressed image preview">
                         <div class="image-stats">
                             <div class="stat-row">
                                 <span class="stat-label">Size:</span>
@@ -117,6 +159,22 @@
                 </div>
             </div>
         </div>
+
+        <!-- Middle Ad -->
+        <div class="ad-container">
+            <div class="ad-label">Advertisement</div>
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-YOUR_ADSENSE_ID"
+                 data-ad-slot="YOUR_AD_SLOT_MID"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({})</script>
+        </div>
+
+        <footer>
+            <p>© 2025 ImageCompressPro by @Deb Malya Banerjee. Free online tool to optimize your images.</p>
+        </footer>
     </div>
 
     <div class="toast" id="toast"></div>
@@ -137,8 +195,14 @@
         fileInput.addEventListener('change', handleFileSelect);
         uploadArea.addEventListener('dragover', e => { e.preventDefault(); uploadArea.style.borderColor = '#4361ee' });
         uploadArea.addEventListener('dragleave', () => { uploadArea.style.borderColor = '#ddd' });
-        uploadArea.addEventListener('drop', e => { e.preventDefault(); uploadArea.style.borderColor = '#ddd'; 
-            if(e.dataTransfer.files.length) { fileInput.files = e.dataTransfer.files; handleFileSelect({target:fileInput}) } });
+        uploadArea.addEventListener('drop', e => { 
+            e.preventDefault(); 
+            uploadArea.style.borderColor = '#ddd'; 
+            if(e.dataTransfer.files.length) { 
+                fileInput.files = e.dataTransfer.files; 
+                handleFileSelect({target:fileInput}) 
+            } 
+        });
         qualitySlider.addEventListener('input', () => qualityValue.textContent = `${qualitySlider.value}%`);
         compressBtn.addEventListener('click', compressImage);
         resetBtn.addEventListener('click', resetTool);
@@ -146,7 +210,7 @@
         function handleFileSelect(e) {
             const file = e.target.files[0];
             if(!file) return;
-            if(!file.type.match('image.*')) return showToast('Please select an image');
+            if(!file.type.match('image.*')) return showToast('Please select an image file');
             if(file.size > 10e6) return showToast('Max 10MB allowed');
             
             selectedFile = file;
@@ -180,12 +244,24 @@
             reduction.textContent = `${((origSize-compSize)/origSize*100).toFixed(1)}%`;
             compressedImg.src = originalImg.src;
             downloadBtn.href = originalImg.src;
-            downloadBtn.download = `compressed_${selectedFile.name}`;
+            downloadBtn.download = `compressed_${selectedFile.name.replace(/\.[^/.]+$/, '')}.${getFileExtension()}`;
             
             results.style.display = 'block';
             compressText.textContent = 'Compress';
             spinner.style.display = 'none';
             showToast('Compression complete');
+            
+            // Load ads after user interaction
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        }
+        
+        function getFileExtension() {
+            const format = formatSelect.value;
+            if(format !== 'auto') return format;
+            if(selectedFile.name.match(/\.jpe?g$/i)) return 'jpg';
+            if(selectedFile.name.match(/\.png$/i)) return 'png';
+            if(selectedFile.name.match(/\.webp$/i)) return 'webp';
+            return selectedFile.name.split('.').pop().toLowerCase();
         }
         
         function resetTool() {
