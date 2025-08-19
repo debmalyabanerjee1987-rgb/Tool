@@ -2,30 +2,68 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Simple Comments with Admin Reply</title>
+  <title>Comments Section</title>
   <style>
-    body { font-family: Arial, sans-serif; background: #fff; color:#000; }
-    .comment-box, .reply-box {
-      border: 1px solid #ccc; padding: 10px; margin: 10px 0; border-radius: 6px;
+    body { font-family: 'Segoe UI', Tahoma, sans-serif; background: #f9fafb; color: #111; margin: 0; padding: 20px; }
+    h2 { color: #2563eb; }
+    
+    .comments-container { max-width: 700px; margin: auto; }
+    
+    .comment-box, .admin-reply {
+      background: #fff;
+      border-radius: 10px;
+      padding: 15px;
+      margin: 15px 0;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
     }
+    .comment-box strong { color: #111827; }
+    .meta { font-size: 0.85em; color: #6b7280; margin-bottom: 8px; }
+    
     .admin-reply {
-      margin-left: 20px; padding: 8px; background: #fff3cd; border-left: 3px solid #f0ad4e;
-      border-radius: 6px; margin-top: 5px;
+      margin-left: 30px;
+      border-left: 4px solid #f59e0b;
+      background: #fff7ed;
     }
-    .comment-form { margin-top: 20px; }
-    input, textarea { width: 100%; padding: 8px; margin: 5px 0; border-radius: 4px; border: 1px solid #ccc; }
-    button { padding: 8px 14px; background: #007bff; border: none; border-radius: 4px; color: white; cursor: pointer; }
-    button:hover { background: #0056b3; }
+    
+    .comment-form, .reply-box {
+      margin-top: 15px;
+      background: #f3f4f6;
+      padding: 15px;
+      border-radius: 8px;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 6px 0;
+      border-radius: 6px;
+      border: 1px solid #d1d5db;
+      font-size: 0.95em;
+    }
+    button {
+      background: #2563eb;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 10px 16px;
+      font-size: 0.95em;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    button:hover { background: #1d4ed8; }
+    .reply-box button { background: #f59e0b; }
+    .reply-box button:hover { background: #d97706; }
   </style>
 </head>
 <body>
-  <h2>💬 Comments</h2>
-  <div id="comments"></div>
+  <div class="comments-container">
+    <h2>💬 Comments</h2>
+    <div id="comments"></div>
 
-  <div class="comment-form">
-    <input type="text" id="username" placeholder="Your Name">
-    <textarea id="commentText" placeholder="Write a comment..."></textarea>
-    <button onclick="addComment()">Post Comment</button>
+    <div class="comment-form">
+      <input type="text" id="username" placeholder="Your Name">
+      <textarea id="commentText" placeholder="Write your comment..."></textarea>
+      <button onclick="addComment()">Post Comment</button>
+    </div>
   </div>
 
   <script>
@@ -37,20 +75,28 @@
       comments.forEach((c, index) => {
         let div = document.createElement("div");
         div.className = "comment-box";
-        div.innerHTML = `<strong>${c.user}</strong>: ${c.text}`;
-        
-        // If admin reply exists, show it
+        div.innerHTML = `
+          <div class="meta">${new Date(c.date).toLocaleString()}</div>
+          <strong>${c.user}</strong><p>${c.text}</p>
+        `;
+
+        // Show admin reply if available
         if (c.reply) {
-          div.innerHTML += `<div class="admin-reply"><strong>Admin:</strong> ${c.reply}</div>`;
+          div.innerHTML += `
+            <div class="admin-reply">
+              <div class="meta">Admin Reply</div>
+              <p><strong>Admin:</strong> ${c.reply}</p>
+            </div>`;
         }
 
-        // Admin reply form (simulate admin mode)
+        // Admin reply form
         div.innerHTML += `
           <div class="reply-box">
             <textarea id="reply-${index}" placeholder="Admin reply..."></textarea>
             <button onclick="addReply(${index})">Reply as Admin</button>
           </div>
         `;
+
         container.appendChild(div);
       });
     }
@@ -58,8 +104,8 @@
     function addComment() {
       const user = document.getElementById("username").value.trim() || "Anonymous";
       const text = document.getElementById("commentText").value.trim();
-      if (!text) return alert("Please write something!");
-      comments.push({ user, text, reply: "" });
+      if (!text) return alert("Please enter a comment!");
+      comments.push({ user, text, reply: "", date: new Date().toISOString() });
       localStorage.setItem("comments", JSON.stringify(comments));
       document.getElementById("commentText").value = "";
       renderComments();
