@@ -92,84 +92,91 @@
     </div>
   </div>
 
-  <script>
-    let comments = JSON.parse(localStorage.getItem("comments")) || [];
+<script>
+  let comments = JSON.parse(localStorage.getItem("comments")) || [];
 
-    function renderComments() {
-      const container = document.getElementById("comments");
-      container.innerHTML = "";
-      comments.forEach((c, index) => {
-        let div = document.createElement("div");
-        div.className = "comment-card";
-        let avatar = c.avatar ? c.avatar : "https://via.placeholder.com/48";
-        div.innerHTML = `
-          <img src="${avatar}" alt="Avatar">
-          <div class="comment-content">
-            <div class="meta">${new Date(c.date).toLocaleString()}</div>
-            <strong>${c.user} (${c.email})</strong>
-            <p>${c.text}</p>
-        `;
-        if (c.reply) {
-          div.innerHTML += `
-            <div class="admin-reply">
-              <img src="https://via.placeholder.com/48/FFA500/fff?text=A" alt="Admin">
-              <div class="comment-content">
-                <div class="meta">Admin Reply</div>
-                <p><strong>Admin:</strong> ${c.reply}</p>
-              </div>
-            </div>`;
-        }
+  function renderComments() {
+    const container = document.getElementById("comments");
+    container.innerHTML = "";
+    comments.forEach((c, index) => {
+      let div = document.createElement("div");
+      div.className = "comment-card";
+      let avatar = c.avatar ? c.avatar : "https://via.placeholder.com/48";
+      div.innerHTML = `
+        <img src="${avatar}" alt="Avatar">
+        <div class="comment-content">
+          <div class="meta">${new Date(c.date).toLocaleString()}</div>
+          <strong>${c.user} (${c.email})</strong>
+          <p>${c.text}</p>
+      `;
+      if (c.reply) {
         div.innerHTML += `
-          <div class="reply-box">
-            <textarea id="reply-${index}" placeholder="Admin reply..."></textarea>
-            <button onclick="addReply(${index})">Reply as Admin</button>
-          </div>
-        `;
-        div.innerHTML += `</div>`; 
-        container.appendChild(div);
-      });
-    }
-
-    function addComment() {
-      const user = document.getElementById("username").value.trim();
-      const email = document.getElementById("email").value.trim();
-      const text = document.getElementById("commentText").value.trim();
-      const fileInput = document.getElementById("avatar");
-
-      if (!user || !email || !text) {
-        return alert("Name, Email and Comment are required!");
+          <div class="admin-reply">
+            <img src="https://via.placeholder.com/48/FFA500/fff?text=A" alt="Admin">
+            <div class="comment-content">
+              <div class="meta">Admin Reply</div>
+              <p><strong>Admin:</strong> ${c.reply}</p>
+            </div>
+          </div>`;
       }
+      div.innerHTML += `
+        <div class="reply-box">
+          <textarea id="reply-${index}" placeholder="Admin reply..."></textarea>
+          <button onclick="addReply(${index})">Reply as Admin</button>
+        </div>
+      `;
+      div.innerHTML += `</div>`; 
+      container.appendChild(div);
+    });
+  }
 
-      if (fileInput.files && fileInput.files[0]) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          saveComment(user, email, text, e.target.result);
-        };
-        reader.readAsDataURL(fileInput.files[0]);
-      } else {
-        saveComment(user, email, text, "");
-      }
+  function addComment() {
+    const user = document.getElementById("username").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const text = document.getElementById("commentText").value.trim();
+    const fileInput = document.getElementById("avatar");
+
+    if (!user || !email || !text) {
+      return alert("Name, Email and Comment are required!");
     }
 
-    function saveComment(user, email, text, avatar) {
-      comments.push({ user, email, text, avatar, reply: "", date: new Date().toISOString() });
-      localStorage.setItem("comments", JSON.stringify(comments));
-      document.getElementById("username").value = "";
-      document.getElementById("email").value = "";
-      document.getElementById("commentText").value = "";
-      document.getElementById("avatar").value = "";
-      renderComments();
+    // ✅ Word limit check
+    const wordCount = text.split(/\s+/).filter(w => w.length > 0).length;
+    if (wordCount > 250) {
+      return alert("Your comment exceeds the 250-word limit. Please shorten it.");
     }
 
-    function addReply(index) {
-      const replyText = document.getElementById("reply-" + index).value.trim();
-      if (!replyText) return alert("Reply cannot be empty");
-      comments[index].reply = replyText;
-      localStorage.setItem("comments", JSON.stringify(comments));
-      renderComments();
+    if (fileInput.files && fileInput.files[0]) {
+      const reader = new FileReader();
+      reader.onload = function(e) {
+        saveComment(user, email, text, e.target.result);
+      };
+      reader.readAsDataURL(fileInput.files[0]);
+    } else {
+      saveComment(user, email, text, "");
     }
+  }
 
+  function saveComment(user, email, text, avatar) {
+    comments.push({ user, email, text, avatar, reply: "", date: new Date().toISOString() });
+    localStorage.setItem("comments", JSON.stringify(comments));
+    document.getElementById("username").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("commentText").value = "";
+    document.getElementById("avatar").value = "";
     renderComments();
-  </script>
+  }
+
+  function addReply(index) {
+    const replyText = document.getElementById("reply-" + index).value.trim();
+    if (!replyText) return alert("Reply cannot be empty");
+    comments[index].reply = replyText;
+    localStorage.setItem("comments", JSON.stringify(comments));
+    renderComments();
+  }
+
+  renderComments();
+</script>
+
 </body>
 </html>
