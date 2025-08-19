@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Online Toolkits, Android and iPhone Apps - Download, Explore, and Share. User-friendly, SEO optimized, and monetizable.">
   <meta name="keywords" content="toolkits, android apps, iphone apps, tech tools, mobile apps, utilities">
-  <meta name="author" content="Shubhankar Banerjee">
+  <meta name="author" content="Deb Malya Banerjee">
   <title>Toolkits & Apps</title>
   <style>
     body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: white; color: #111; }
@@ -34,53 +34,9 @@
 </head>
 <body>
   <header>
-    <h1>Online Apps & Toolkits</h1>
+    <h1>Online Toolkits & Apps </h1>
     <p>Your go-to platform for Toolkits, Android and iPhone Apps</p>
   </header>
-
-  <nav>
-    <a href="#toolkits">Toolkits</a>
-    <a href="#android">Android Apps</a>
-    <a href="#iphone">iPhone Apps</a>
-    <a href="#community">Community</a>
-  </nav>
-
-  <section id="toolkits">
-    <h2>Toolkits</h2>
-    <div class="card">Toolkit 1 - Productivity Suite</div>
-    <div class="card">Toolkit 2 - Developer Tools</div>
-  </section>
-
-  <section id="android">
-    <h2>Android Apps</h2>
-    <div class="card">Android App 1 - Fitness Tracker</div>
-    <div class="card">Android App 2 - Expense Manager</div>
-  </section>
-
-  <section id="iphone">
-    <h2>iPhone Apps</h2>
-    <div class="card">iPhone App 1 - Task Manager</div>
-    <div class="card">iPhone App 2 - Language Learning</div>
-  </section>
-
-  <section id="community">
-    <h2>Community Discussion</h2>
-
-    <!-- Admin Login -->
-    <div id="admin-login" style="max-width:400px; margin:20px auto; background:#f3f4f6; padding:15px; border-radius:8px;">
-      <h3>🔐 Admin Login</h3>
-      <input type="password" id="adminPassword" placeholder="Enter Admin Password">
-      <button onclick="adminLogin()">Login</button>
-      <p id="login-status" style="color:#dc2626; font-size:0.9em;"></p>
-    </div>
-
-    <!-- Admin Tools -->
-    <div id="admin-tools" class="admin-tools" style="display:none; max-width:800px; margin:auto;">
-      <h3>🛠 Admin Tools</h3>
-      <button onclick="bulkDelete()">🗑 Bulk Delete</button>
-      <button onclick="toggleSort()">↕ Toggle Sort (New/Old)</button>
-      <button onclick="adminLogout()">🚪 Logout</button>
-    </div>
 
     <!-- Comment Form -->
     <div class="comment-box">
@@ -96,7 +52,7 @@
   </section>
 
   <footer>
-    <p>© 2025 Shubhankar Banerjee | All Rights Reserved</p>
+    <p>© 2025 Deb Malya Banerjee | All Rights Reserved</p>
   </footer>
 
   <script>
@@ -105,7 +61,7 @@
     let sortOrder = "new"; 
     let isAdmin = localStorage.getItem("isAdmin") === "true";
 
-    // 🔑 Hash of "@Shubhankar16"
+    // 🔑 Hash of "@Deb Malya16"
     const ADMIN_HASH = "6eb507f948f1c4a95316672a123c4927ad070bf9c4324d501af3f30c7b5960e5";
 
     async function hashPassword(password) {
