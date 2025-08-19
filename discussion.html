@@ -2,285 +2,298 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Online Toolkits, Android and iPhone Apps - Download, Explore, and Share. User-friendly, SEO optimized, and monetizable.">
+  <meta name="keywords" content="toolkits, android apps, iphone apps, tech tools, mobile apps, utilities">
+  <meta name="author" content="Shubhankar Banerjee">
   <title>Toolkits & Apps</title>
-
-  <!-- Basic SEO -->
-  <meta name="description" content="Discover the best toolkits, Android apps, and iPhone apps. Join discussions, share your thoughts, and explore top resources.">
-  <meta name="keywords" content="toolkits, android apps, iphone apps, developer tools, productivity, comments, discussions">
-  <meta name="author" content="Online Toolkits & Apps">
-
-  <!-- Mobile Friendly -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <!-- Canonical -->
-  <link rel="canonical" href="https://yourgithubusername.github.io/">
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="Online Toolkits & Apps - Android & iPhone">
-  <meta property="og:description" content="Explore toolkits and apps. Comment, get admin replies, and join the discussion.">
-  <meta property="og:image" content="https://yourgithubusername.github.io/preview.png">
-  <meta property="og:url" content="https://yourgithubusername.github.io/">
-  <meta property="og:type" content="website">
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Online Toolkits & Apps - Android & iPhone">
-  <meta name="twitter:description" content="Explore toolkits and apps. Comment, get admin replies, and join the discussion.">
-  <meta name="twitter:image" content="https://yourgithubusername.github.io/preview.png">
-
-  <!-- Structured Data (Schema.org) -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "name": "Online Toolkits & Apps",
-    "url": "https://yourgithubusername.github.io/",
-    "description": "Discover the best toolkits, Android apps, and iPhone apps. Join discussions, share your thoughts, and explore top resources.",
-    "potentialAction": {
-      "@type": "SearchAction",
-      "target": "https://yourgithubusername.github.io/?q={search_term_string}",
-      "query-input": "required name=search_term_string"
-    }
-  }
-  </script>
-
   <style>
-    body { font-family: 'Segoe UI', sans-serif; background: #f9fafb; color: #111; margin: 0; padding: 20px; }
-    h1, h2 { color: #2563eb; text-align: center; }
-    .comments-container { max-width: 800px; margin: auto; }
-    .comment-card, .admin-reply {
-      background: #fff; border-radius: 10px; padding: 15px; margin: 15px 0;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.08); display: flex; gap: 15px;
-    }
-    .comment-card img, .admin-reply img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; }
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: white; color: #111; }
+    header { background: #2563eb; color: white; padding: 20px; text-align: center; }
+    header h1 { margin: 0; }
+    nav { background: #1e3a8a; padding: 10px; text-align: center; }
+    nav a { color: white; margin: 0 10px; text-decoration: none; }
+    section { padding: 40px 20px; max-width: 1000px; margin: auto; }
+    h2 { color: #1e3a8a; border-bottom: 2px solid #ddd; padding-bottom: 5px; }
+    .card { background: #f9f9f9; padding: 15px; border-radius: 8px; margin: 10px 0; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+    footer { background: #1e3a8a; color: white; text-align: center; padding: 15px; margin-top: 20px; }
+
+    /* Comment Section */
+    .comment-box, .comment-card { background: #f3f4f6; padding: 15px; border-radius: 8px; margin: 15px 0; }
+    .comment-box input, .comment-box textarea { width: 100%; padding: 8px; margin: 5px 0; border: 1px solid #ddd; border-radius: 6px; }
+    .comment-box button { padding: 8px 12px; background: #2563eb; color: white; border: none; border-radius: 6px; cursor: pointer; }
+    .comment-card { display: flex; gap: 10px; }
+    .comment-card img { width: 48px; height: 48px; border-radius: 50%; }
     .comment-content { flex: 1; }
-    .meta { font-size: 0.85em; color: #6b7280; margin-bottom: 6px; }
-    .comment-content strong { color: #111827; display:block; }
-    .admin-reply { margin-left: 50px; border-left: 4px solid #f59e0b; background: #fff7ed; }
-    .comment-form, .reply-box { margin-top: 20px; background: #f3f4f6; padding: 15px; border-radius: 8px; }
-    input, textarea { width: 100%; padding: 10px; margin: 6px 0; border-radius: 6px; border: 1px solid #d1d5db; font-size: 0.95em; }
-    input[type=file] { padding: 3px; }
-    button { background: #2563eb; color: #fff; border: none; border-radius: 6px; padding: 10px 16px; font-size: 0.95em; cursor: pointer; transition: 0.2s; }
-    button:hover { background: #1d4ed8; }
-    .reply-box button { background: #f59e0b; }
-    .reply-box button:hover { background: #d97706; }
+    .admin-reply { background: #fff3cd; padding: 10px; border-radius: 6px; margin-top: 10px; }
+    .reply-box textarea { width: 100%; padding: 5px; margin-top: 5px; border: 1px solid #ddd; border-radius: 6px; }
+    .reply-box button { margin-top: 5px; }
+
+    .admin-tools { background:#fff3cd; padding:10px; border-radius:8px; margin-bottom:20px; }
   </style>
 </head>
 <body>
-  <h1>Online Toolkits & Apps</h1>
-  <p style="text-align:center; max-width:700px; margin:auto;">
-    Explore curated toolkits & Apps, and discussions.  
-    Share your thoughts in the comment section below 👇
-  </p>
+  <header>
+    <h1>Online Apps & Toolkits</h1>
+    <p>Your go-to platform for Toolkits, Android and iPhone Apps</p>
+  </header>
 
-  <div class="comments-container">
-    <h2>💬 Discussion</h2>
-    <div id="comments"></div>
+  <nav>
+    <a href="#toolkits">Toolkits</a>
+    <a href="#android">Android Apps</a>
+    <a href="#iphone">iPhone Apps</a>
+    <a href="#community">Community</a>
+  </nav>
 
-  <div class="comments-container">
-    <a href="/Tool/index">Home</a>
-    <div id="comments"></div>
+  <section id="toolkits">
+    <h2>Toolkits</h2>
+    <div class="card">Toolkit 1 - Productivity Suite</div>
+    <div class="card">Toolkit 2 - Developer Tools</div>
+  </section>
 
-    <div class="comment-form">
-      <h3>Leave a Comment</h3>
+  <section id="android">
+    <h2>Android Apps</h2>
+    <div class="card">Android App 1 - Fitness Tracker</div>
+    <div class="card">Android App 2 - Expense Manager</div>
+  </section>
+
+  <section id="iphone">
+    <h2>iPhone Apps</h2>
+    <div class="card">iPhone App 1 - Task Manager</div>
+    <div class="card">iPhone App 2 - Language Learning</div>
+  </section>
+
+  <section id="community">
+    <h2>Community Discussion</h2>
+
+    <!-- Admin Login -->
+    <div id="admin-login" style="max-width:400px; margin:20px auto; background:#f3f4f6; padding:15px; border-radius:8px;">
+      <h3>🔐 Admin Login</h3>
+      <input type="password" id="adminPassword" placeholder="Enter Admin Password">
+      <button onclick="adminLogin()">Login</button>
+      <p id="login-status" style="color:#dc2626; font-size:0.9em;"></p>
+    </div>
+
+    <!-- Admin Tools -->
+    <div id="admin-tools" class="admin-tools" style="display:none; max-width:800px; margin:auto;">
+      <h3>🛠 Admin Tools</h3>
+      <button onclick="bulkDelete()">🗑 Bulk Delete</button>
+      <button onclick="toggleSort()">↕ Toggle Sort (New/Old)</button>
+      <button onclick="adminLogout()">🚪 Logout</button>
+    </div>
+
+    <!-- Comment Form -->
+    <div class="comment-box">
       <input type="text" id="username" placeholder="Your Name *" required>
       <input type="email" id="email" placeholder="Your Email *" required>
-      <textarea id="commentText" placeholder="Write your comment..." required></textarea>
-      <label>Upload Avatar:</label>
+      <textarea id="commentText" placeholder="Your Comment (max 250 words)" required></textarea>
       <input type="file" id="avatar" accept="image/*">
       <button onclick="addComment()">Post Comment</button>
     </div>
-  </div>
 
-<script>
-  let comments = JSON.parse(localStorage.getItem("comments")) || [];
-  let blockedUsers = JSON.parse(localStorage.getItem("blockedUsers")) || [];
-  let sortOrder = "new"; 
-  let isAdmin = localStorage.getItem("isAdmin") === "true";
+    <!-- Comments List -->
+    <div id="comments"></div>
+  </section>
 
-  const ADMIN_PASSWORD = "MySecret123"; // 🔑 Change this to your own password!
+  <footer>
+    <p>© 2025 Shubhankar Banerjee | All Rights Reserved</p>
+  </footer>
 
-  function cleanupOldComments() {
-    const oneYearAgo = new Date();
-    oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
-    comments = comments.filter(c => new Date(c.date) > oneYearAgo);
-    localStorage.setItem("comments", JSON.stringify(comments));
-  }
-  cleanupOldComments();
+  <script>
+    let comments = JSON.parse(localStorage.getItem("comments")) || [];
+    let blockedUsers = JSON.parse(localStorage.getItem("blockedUsers")) || [];
+    let sortOrder = "new"; 
+    let isAdmin = localStorage.getItem("isAdmin") === "true";
 
-  function renderComments() {
-    const container = document.getElementById("comments");
-    container.innerHTML = "";
+    // 🔑 Hash of "@Shubhankar16"
+    const ADMIN_HASH = "6eb507f948f1c4a95316672a123c4927ad070bf9c4324d501af3f30c7b5960e5";
 
-    let sortedComments = [...comments];
-    sortedComments.sort((a, b) => {
-      return sortOrder === "new" ? new Date(b.date) - new Date(a.date) : new Date(a.date) - new Date(b.date);
-    });
+    async function hashPassword(password) {
+      const encoder = new TextEncoder();
+      const data = encoder.encode(password);
+      const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+      return Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, "0")).join("");
+    }
 
-    sortedComments.forEach((c, index) => {
-      let div = document.createElement("div");
-      div.className = "comment-card";
-      let avatar = c.avatar ? c.avatar : "https://via.placeholder.com/48";
-
-      div.innerHTML = `
-        ${isAdmin ? `<input type="checkbox" class="select-comment" data-index="${index}">` : ""}
-        <img src="${avatar}" alt="Avatar">
-        <div class="comment-content">
-          <div class="meta">${new Date(c.date).toLocaleString()}</div>
-          <strong>${c.user} (${c.email})</strong>
-          <p>${c.text}</p>
-      `;
-
-      if (!c.approved) {
-        if (isAdmin) {
-          div.innerHTML += `
-            <p style="color:#b91c1c;"><em>Pending approval...</em></p>
-            <div class="reply-box">
-              <button onclick="approveComment(${index})">✅ Approve</button>
-              <button onclick="deleteComment(${index})">🗑 Delete</button>
-              <button onclick="blockUser('${c.email}')">🚫 Block User</button>
-            </div>
-          `;
-        } else {
-          div.innerHTML += `<p style="color:#b91c1c;"><em>Pending approval...</em></p>`;
-        }
+    async function adminLogin() {
+      const pass = document.getElementById("adminPassword").value;
+      const hash = await hashPassword(pass);
+      if (hash === ADMIN_HASH) {
+        isAdmin = true;
+        localStorage.setItem("isAdmin", "true");
+        document.getElementById("admin-login").style.display = "none";
+        renderComments();
       } else {
-        if (c.reply) {
-          div.innerHTML += `
-            <div class="admin-reply">
-              <img src="https://via.placeholder.com/48/FFA500/fff?text=A" alt="Admin">
-              <div class="comment-content">
-                <div class="meta">Admin Reply</div>
-                <p><strong>Admin:</strong> ${c.reply}</p>
+        document.getElementById("login-status").innerText = "❌ Wrong password!";
+      }
+    }
+
+    function adminLogout() {
+      isAdmin = false;
+      localStorage.setItem("isAdmin", "false");
+      document.getElementById("admin-login").style.display = "block";
+      renderComments();
+    }
+
+    // Auto-remove old comments >1 year
+    function cleanupOldComments() {
+      const oneYearAgo = new Date();
+      oneYearAgo.setFullYear(oneYearAgo.getFullYear() - 1);
+      comments = comments.filter(c => new Date(c.date) > oneYearAgo);
+      localStorage.setItem("comments", JSON.stringify(comments));
+    }
+    cleanupOldComments();
+
+    function renderComments() {
+      const container = document.getElementById("comments");
+      container.innerHTML = "";
+
+      let sortedComments = [...comments];
+      sortedComments.sort((a, b) => {
+        return sortOrder === "new" ? new Date(b.date) - new Date(a.date) : new Date(a.date) - new Date(b.date);
+      });
+
+      sortedComments.forEach((c, index) => {
+        let div = document.createElement("div");
+        div.className = "comment-card";
+        let avatar = c.avatar ? c.avatar : "https://via.placeholder.com/48";
+
+        div.innerHTML = `
+          ${isAdmin ? `<input type="checkbox" class="select-comment" data-index="${index}">` : ""}
+          <img src="${avatar}" alt="Avatar">
+          <div class="comment-content">
+            <div class="meta">${new Date(c.date).toLocaleString()}</div>
+            <strong>${c.user} (${c.email})</strong>
+            <p>${c.text}</p>
+        `;
+
+        if (!c.approved) {
+          if (isAdmin) {
+            div.innerHTML += `
+              <p style="color:#b91c1c;"><em>Pending approval...</em></p>
+              <div class="reply-box">
+                <button onclick="approveComment(${index})">✅ Approve</button>
+                <button onclick="deleteComment(${index})">🗑 Delete</button>
+                <button onclick="blockUser('${c.email}')">🚫 Block User</button>
               </div>
-            </div>`;
+            `;
+          } else {
+            div.innerHTML += `<p style="color:#b91c1c;"><em>Pending approval...</em></p>`;
+          }
+        } else {
+          if (c.reply) {
+            div.innerHTML += `
+              <div class="admin-reply">
+                <img src="https://via.placeholder.com/48/FFA500/fff?text=A" alt="Admin">
+                <div class="comment-content">
+                  <div class="meta">Admin Reply</div>
+                  <p><strong>Admin:</strong> ${c.reply}</p>
+                </div>
+              </div>`;
+          }
+          if (isAdmin) {
+            div.innerHTML += `
+              <div class="reply-box">
+                <textarea id="reply-${index}" placeholder="Admin reply..."></textarea>
+                <button onclick="addReply(${index})">Reply as Admin</button>
+                <button onclick="deleteComment(${index})">🗑 Delete</button>
+                <button onclick="blockUser('${c.email}')">🚫 Block User</button>
+              </div>
+            `;
+          }
         }
-        if (isAdmin) {
-          div.innerHTML += `
-            <div class="reply-box">
-              <textarea id="reply-${index}" placeholder="Admin reply..."></textarea>
-              <button onclick="addReply(${index})">Reply as Admin</button>
-              <button onclick="deleteComment(${index})">🗑 Delete</button>
-              <button onclick="blockUser('${c.email}')">🚫 Block User</button>
-            </div>
-          `;
-        }
+
+        div.innerHTML += `</div>`;
+        container.appendChild(div);
+      });
+
+      document.getElementById("admin-tools").style.display = isAdmin ? "block" : "none";
+    }
+
+    function addComment() {
+      const user = document.getElementById("username").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const text = document.getElementById("commentText").value.trim();
+      const fileInput = document.getElementById("avatar");
+
+      if (!user || !email || !text) {
+        return alert("Name, Email and Comment are required!");
+      }
+      if (blockedUsers.includes(email)) {
+        return alert("You are blocked from commenting.");
       }
 
-      div.innerHTML += `</div>`;
-      container.appendChild(div);
-    });
+      const wordCount = text.split(/\s+/).filter(w => w.length > 0).length;
+      if (wordCount > 250) {
+        return alert("Your comment exceeds the 250-word limit. Please shorten it.");
+      }
 
-    document.getElementById("admin-tools").style.display = isAdmin ? "block" : "none";
-  }
-
-  function addComment() {
-    const user = document.getElementById("username").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const text = document.getElementById("commentText").value.trim();
-    const fileInput = document.getElementById("avatar");
-
-    if (!user || !email || !text) {
-      return alert("Name, Email and Comment are required!");
+      if (fileInput.files && fileInput.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          saveComment(user, email, text, e.target.result);
+        };
+        reader.readAsDataURL(fileInput.files[0]);
+      } else {
+        saveComment(user, email, text, "");
+      }
     }
 
-    if (blockedUsers.includes(email)) {
-      return alert("You are blocked from commenting.");
-    }
-
-    const wordCount = text.split(/\s+/).filter(w => w.length > 0).length;
-    if (wordCount > 250) {
-      return alert("Your comment exceeds the 250-word limit. Please shorten it.");
-    }
-
-    if (fileInput.files && fileInput.files[0]) {
-      const reader = new FileReader();
-      reader.onload = function(e) {
-        saveComment(user, email, text, e.target.result);
-      };
-      reader.readAsDataURL(fileInput.files[0]);
-    } else {
-      saveComment(user, email, text, "");
-    }
-  }
-
-  function saveComment(user, email, text, avatar) {
-    comments.push({ user, email, text, avatar, reply: "", date: new Date().toISOString(), approved: false });
-    localStorage.setItem("comments", JSON.stringify(comments));
-    renderComments();
-  }
-
-  function addReply(index) {
-    const replyText = document.getElementById("reply-" + index).value.trim();
-    if (!replyText) return alert("Reply cannot be empty");
-    comments[index].reply = replyText;
-    localStorage.setItem("comments", JSON.stringify(comments));
-    renderComments();
-  }
-
-  function approveComment(index) {
-    comments[index].approved = true;
-    localStorage.setItem("comments", JSON.stringify(comments));
-    renderComments();
-  }
-
-  function deleteComment(index) {
-    if (confirm("Are you sure you want to delete this comment?")) {
-      comments.splice(index, 1);
+    function saveComment(user, email, text, avatar) {
+      comments.push({ user, email, text, avatar, reply: "", date: new Date().toISOString(), approved: false });
       localStorage.setItem("comments", JSON.stringify(comments));
       renderComments();
     }
-  }
 
-  function bulkDelete() {
-    const checkboxes = document.querySelectorAll(".select-comment:checked");
-    if (checkboxes.length === 0) return alert("No comments selected.");
-    if (!confirm("Delete selected comments?")) return;
-    const indexes = Array.from(checkboxes).map(cb => parseInt(cb.dataset.index));
-    comments = comments.filter((c, i) => !indexes.includes(i));
-    localStorage.setItem("comments", JSON.stringify(comments));
-    renderComments();
-  }
-
-  function blockUser(email) {
-    if (!blockedUsers.includes(email)) {
-      blockedUsers.push(email);
-      localStorage.setItem("blockedUsers", JSON.stringify(blockedUsers));
-      alert("User blocked: " + email);
-    }
-  }
-
-  function toggleSort() {
-    sortOrder = sortOrder === "new" ? "old" : "new";
-    renderComments();
-  }
-
-  // ✅ Admin login/logout
-  function adminLogin() {
-    const pass = document.getElementById("adminPassword").value;
-    if (pass === ADMIN_PASSWORD) {
-      isAdmin = true;
-      localStorage.setItem("isAdmin", "true");
-      document.getElementById("admin-login").style.display = "none";
+    function addReply(index) {
+      const replyText = document.getElementById("reply-" + index).value.trim();
+      if (!replyText) return alert("Reply cannot be empty");
+      comments[index].reply = replyText;
+      localStorage.setItem("comments", JSON.stringify(comments));
       renderComments();
-    } else {
-      document.getElementById("login-status").innerText = "❌ Wrong password!";
     }
-  }
 
-  function adminLogout() {
-    isAdmin = false;
-    localStorage.setItem("isAdmin", "false");
-    document.getElementById("admin-login").style.display = "block";
+    function approveComment(index) {
+      comments[index].approved = true;
+      localStorage.setItem("comments", JSON.stringify(comments));
+      renderComments();
+    }
+
+    function deleteComment(index) {
+      if (confirm("Are you sure you want to delete this comment?")) {
+        comments.splice(index, 1);
+        localStorage.setItem("comments", JSON.stringify(comments));
+        renderComments();
+      }
+    }
+
+    function bulkDelete() {
+      const checkboxes = document.querySelectorAll(".select-comment:checked");
+      if (checkboxes.length === 0) return alert("No comments selected.");
+      if (!confirm("Delete selected comments?")) return;
+      const indexes = Array.from(checkboxes).map(cb => parseInt(cb.dataset.index));
+      comments = comments.filter((c, i) => !indexes.includes(i));
+      localStorage.setItem("comments", JSON.stringify(comments));
+      renderComments();
+    }
+
+    function blockUser(email) {
+      if (!blockedUsers.includes(email)) {
+        blockedUsers.push(email);
+        localStorage.setItem("blockedUsers", JSON.stringify(blockedUsers));
+        alert("User blocked: " + email);
+      }
+    }
+
+    function toggleSort() {
+      sortOrder = sortOrder === "new" ? "old" : "new";
+      renderComments();
+    }
+
+    if (isAdmin) {
+      document.getElementById("admin-login").style.display = "none";
+    }
     renderComments();
-  }
-
-  // Initial UI state
-  if (isAdmin) {
-    document.getElementById("admin-login").style.display = "none";
-  }
-  renderComments();
-</script>
-
+  </script>
 </body>
 </html>
