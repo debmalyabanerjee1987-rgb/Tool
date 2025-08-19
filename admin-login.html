@@ -1,0 +1,13 @@
+<div id="admin-login" style="max-width:400px; margin:20px auto; background:#f3f4f6; padding:15px; border-radius:8px;">
+  <h3>🔐 Admin Login</h3>
+  <input type="password" id="adminPassword" placeholder="Enter Admin Password">
+  <button onclick="adminLogin()">Login</button>
+  <p id="login-status" style="color:#dc2626; font-size:0.9em;"></p>
+</div>
+
+<div id="admin-tools" style="display:none; max-width:800px; margin:20px auto; background:#fff3cd; padding:10px; border-radius:8px;">
+  <h3>🛠 Admin Tools</h3>
+  <button onclick="bulkDelete()">🗑 Bulk Delete</button>
+  <button onclick="toggleSort()">↕ Toggle Sort (New/Old)</button>
+  <button onclick="adminLogout()">🚪 Logout</button>
+</div>
