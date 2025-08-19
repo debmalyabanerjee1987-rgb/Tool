@@ -694,6 +694,173 @@
         </section>
     </main>
 
+<!-- Comment section Start Below -->
+
+     <section class="features-section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Comments Section</h2>
+                    <p>We provide the best online tools experience</p>
+                </div>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background: #f9fafb; color: #111; margin: 0; padding: 20px; }
+    h2 { color: #2563eb; text-align: center; }
+
+    .comments-container { max-width: 800px; margin: auto; }
+
+    .comment-card, .admin-reply {
+      background: #fff;
+      border-radius: 10px;
+      padding: 15px;
+      margin: 15px 0;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.08);
+      display: flex;
+      gap: 15px;
+    }
+    .comment-card img, .admin-reply img {
+      width: 48px; height: 48px; border-radius: 50%; object-fit: cover;
+    }
+    .comment-content { flex: 1; }
+    .meta { font-size: 0.85em; color: #6b7280; margin-bottom: 6px; }
+    .comment-content strong { color: #111827; display:block; }
+
+    .admin-reply {
+      margin-left: 50px;
+      border-left: 4px solid #f59e0b;
+      background: #fff7ed;
+    }
+
+    .comment-form, .reply-box {
+      margin-top: 20px;
+      background: #f3f4f6;
+      padding: 15px;
+      border-radius: 8px;
+    }
+    .comment-form h3 { margin-top: 0; }
+
+    input, textarea {
+      width: 100%; padding: 10px; margin: 6px 0;
+      border-radius: 6px; border: 1px solid #d1d5db; font-size: 0.95em;
+    }
+    input[type=file] { padding: 3px; }
+    button {
+      background: #2563eb; color: #fff; border: none;
+      border-radius: 6px; padding: 10px 16px; font-size: 0.95em;
+      cursor: pointer; transition: 0.2s;
+    }
+    button:hover { background: #1d4ed8; }
+    .reply-box button { background: #f59e0b; }
+    .reply-box button:hover { background: #d97706; }
+  </style>
+</head>
+<body>
+  <div class="comments-container">
+    <h2>💬 Discussion</h2>
+    <div id="comments"></div>
+
+    <div class="comment-form">
+      <h3>Leave a Comment</h3>
+      <input type="text" id="username" placeholder="Your Name *" required>
+      <input type="email" id="email" placeholder="Your Email *" required>
+      <textarea id="commentText" placeholder="Write your comment..." required></textarea>
+      <label>Upload Avatar:</label>
+      <input type="file" id="avatar" accept="image/*">
+      <button onclick="addComment()">Post Comment</button>
+    </div>
+  </div>
+            </div>
+     </section>
+    
+  <script>
+    let comments = JSON.parse(localStorage.getItem("comments")) || [];
+
+    function renderComments() {
+      const container = document.getElementById("comments");
+      container.innerHTML = "";
+      comments.forEach((c, index) => {
+        let div = document.createElement("div");
+        div.className = "comment-card";
+        let avatar = c.avatar ? c.avatar : "https://via.placeholder.com/48";
+        div.innerHTML = `
+          <img src="${avatar}" alt="Avatar">
+          <div class="comment-content">
+            <div class="meta">${new Date(c.date).toLocaleString()}</div>
+            <strong>${c.user} (${c.email})</strong>
+            <p>${c.text}</p>
+        `;
+
+        // Admin reply display
+        if (c.reply) {
+          div.innerHTML += `
+            <div class="admin-reply">
+              <img src="https://via.placeholder.com/48/FFA500/fff?text=A" alt="Admin">
+              <div class="comment-content">
+                <div class="meta">Admin Reply</div>
+                <p><strong>Admin:</strong> ${c.reply}</p>
+              </div>
+            </div>`;
+        }
+
+        // Admin reply box
+        div.innerHTML += `
+          <div class="reply-box">
+            <textarea id="reply-${index}" placeholder="Admin reply..."></textarea>
+            <button onclick="addReply(${index})">Reply as Admin</button>
+          </div>
+        `;
+
+        div.innerHTML += `</div>`; // close comment-content
+        container.appendChild(div);
+      });
+    }
+
+    function addComment() {
+      const user = document.getElementById("username").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const text = document.getElementById("commentText").value.trim();
+      const fileInput = document.getElementById("avatar");
+
+      if (!user || !email || !text) {
+        return alert("Name, Email and Comment are required!");
+      }
+
+      // Handle avatar upload
+      let avatarBase64 = "";
+      if (fileInput.files && fileInput.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          avatarBase64 = e.target.result;
+          saveComment(user, email, text, avatarBase64);
+        };
+        reader.readAsDataURL(fileInput.files[0]);
+      } else {
+        saveComment(user, email, text, "");
+      }
+    }
+
+    function saveComment(user, email, text, avatar) {
+      comments.push({ user, email, text, avatar, reply: "", date: new Date().toISOString() });
+      localStorage.setItem("comments", JSON.stringify(comments));
+      document.getElementById("username").value = "";
+      document.getElementById("email").value = "";
+      document.getElementById("commentText").value = "";
+      document.getElementById("avatar").value = "";
+      renderComments();
+    }
+
+    function addReply(index) {
+      const replyText = document.getElementById("reply-" + index).value.trim();
+      if (!replyText) return alert("Reply cannot be empty");
+      comments[index].reply = replyText;
+      localStorage.setItem("comments", JSON.stringify(comments));
+      renderComments();
+    }
+
+    renderComments();
+  </script>
+
+    <!-- Comment section Ends here -->
+
     <footer>
         <div class="container">
             <div class="footer-content">
