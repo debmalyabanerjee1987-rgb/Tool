@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Top Notch Toolkits & Apps - Android & iPhone</title>
+
+  <!-- Basic SEO -->
+  <meta name="description" content="Discover the best toolkits, Android apps, and iPhone apps. Join discussions, share your thoughts, and explore top resources.">
+  <meta name="keywords" content="toolkits, android apps, iphone apps, developer tools, productivity, comments, discussions">
+  <meta name="author" content="Top Notch Toolkits">
+
+  <!-- Mobile Friendly -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Canonical -->
+  <link rel="canonical" href="https://yourgithubusername.github.io/">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Top Notch Toolkits & Apps - Android & iPhone">
+  <meta property="og:description" content="Explore toolkits and apps. Comment, get admin replies, and join the discussion.">
+  <meta property="og:image" content="https://yourgithubusername.github.io/preview.png">
+  <meta property="og:url" content="https://yourgithubusername.github.io/">
+  <meta property="og:type" content="website">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Top Notch Toolkits & Apps - Android & iPhone">
+  <meta name="twitter:description" content="Explore toolkits and apps. Comment, get admin replies, and join the discussion.">
+  <meta name="twitter:image" content="https://yourgithubusername.github.io/preview.png">
+
+  <!-- Structured Data (Schema.org) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Top Notch Toolkits & Apps",
+    "url": "https://yourgithubusername.github.io/",
+    "description": "Discover the best toolkits, Android apps, and iPhone apps. Join discussions, share your thoughts, and explore top resources.",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://yourgithubusername.github.io/?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background: #f9fafb; color: #111; margin: 0; padding: 20px; }
+    h1, h2 { color: #2563eb; text-align: center; }
+    .comments-container { max-width: 800px; margin: auto; }
+    .comment-card, .admin-reply {
+      background: #fff; border-radius: 10px; padding: 15px; margin: 15px 0;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.08); display: flex; gap: 15px;
+    }
+    .comment-card img, .admin-reply img { width: 48px; height: 48px; border-radius: 50%; object-fit: cover; }
+    .comment-content { flex: 1; }
+    .meta { font-size: 0.85em; color: #6b7280; margin-bottom: 6px; }
+    .comment-content strong { color: #111827; display:block; }
+    .admin-reply { margin-left: 50px; border-left: 4px solid #f59e0b; background: #fff7ed; }
+    .comment-form, .reply-box { margin-top: 20px; background: #f3f4f6; padding: 15px; border-radius: 8px; }
+    input, textarea { width: 100%; padding: 10px; margin: 6px 0; border-radius: 6px; border: 1px solid #d1d5db; font-size: 0.95em; }
+    input[type=file] { padding: 3px; }
+    button { background: #2563eb; color: #fff; border: none; border-radius: 6px; padding: 10px 16px; font-size: 0.95em; cursor: pointer; transition: 0.2s; }
+    button:hover { background: #1d4ed8; }
+    .reply-box button { background: #f59e0b; }
+    .reply-box button:hover { background: #d97706; }
+  </style>
+</head>
+<body>
+  <h1>Top Notch Toolkits & Apps</h1>
+  <p style="text-align:center; max-width:700px; margin:auto;">
+    Explore curated Android and iPhone apps, productivity toolkits, and discussions.  
+    Share your thoughts in the comment section below 👇
+  </p>
+
+  <div class="comments-container">
+    <h2>💬 Discussion</h2>
+    <div id="comments"></div>
+
+    <div class="comment-form">
+      <h3>Leave a Comment</h3>
+      <input type="text" id="username" placeholder="Your Name *" required>
+      <input type="email" id="email" placeholder="Your Email *" required>
+      <textarea id="commentText" placeholder="Write your comment..." required></textarea>
+      <label>Upload Avatar:</label>
+      <input type="file" id="avatar" accept="image/*">
+      <button onclick="addComment()">Post Comment</button>
+    </div>
+  </div>
+
+  <script>
+    let comments = JSON.parse(localStorage.getItem("comments")) || [];
+
+    function renderComments() {
+      const container = document.getElementById("comments");
+      container.innerHTML = "";
+      comments.forEach((c, index) => {
+        let div = document.createElement("div");
+        div.className = "comment-card";
+        let avatar = c.avatar ? c.avatar : "https://via.placeholder.com/48";
+        div.innerHTML = `
+          <img src="${avatar}" alt="Avatar">
+          <div class="comment-content">
+            <div class="meta">${new Date(c.date).toLocaleString()}</div>
+            <strong>${c.user} (${c.email})</strong>
+            <p>${c.text}</p>
+        `;
+        if (c.reply) {
+          div.innerHTML += `
+            <div class="admin-reply">
+              <img src="https://via.placeholder.com/48/FFA500/fff?text=A" alt="Admin">
+              <div class="comment-content">
+                <div class="meta">Admin Reply</div>
+                <p><strong>Admin:</strong> ${c.reply}</p>
+              </div>
+            </div>`;
+        }
+        div.innerHTML += `
+          <div class="reply-box">
+            <textarea id="reply-${index}" placeholder="Admin reply..."></textarea>
+            <button onclick="addReply(${index})">Reply as Admin</button>
+          </div>
+        `;
+        div.innerHTML += `</div>`; 
+        container.appendChild(div);
+      });
+    }
+
+    function addComment() {
+      const user = document.getElementById("username").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const text = document.getElementById("commentText").value.trim();
+      const fileInput = document.getElementById("avatar");
+
+      if (!user || !email || !text) {
+        return alert("Name, Email and Comment are required!");
+      }
+
+      if (fileInput.files && fileInput.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          saveComment(user, email, text, e.target.result);
+        };
+        reader.readAsDataURL(fileInput.files[0]);
+      } else {
+        saveComment(user, email, text, "");
+      }
+    }
+
+    function saveComment(user, email, text, avatar) {
+      comments.push({ user, email, text, avatar, reply: "", date: new Date().toISOString() });
+      localStorage.setItem("comments", JSON.stringify(comments));
+      document.getElementById("username").value = "";
+      document.getElementById("email").value = "";
+      document.getElementById("commentText").value = "";
+      document.getElementById("avatar").value = "";
+      renderComments();
+    }
+
+    function addReply(index) {
+      const replyText = document.getElementById("reply-" + index).value.trim();
+      if (!replyText) return alert("Reply cannot be empty");
+      comments[index].reply = replyText;
+      localStorage.setItem("comments", JSON.stringify(comments));
+      renderComments();
+    }
+
+    renderComments();
+  </script>
+</body>
+</html>
